@@ -9,7 +9,8 @@ export default function App() {
   // Function to fetch a random quote from the backend
   const getQuote = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/quote");
+      // render deploy link
+      const res = await fetch("https://nodejs-fullstack-practice.onrender.com/api/quote");
       const data = await res.json();
       setQuote(data.quote); // Update the quote in UI
     } catch (error) {
