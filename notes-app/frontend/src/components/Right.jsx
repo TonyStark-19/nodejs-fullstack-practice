@@ -1,16 +1,16 @@
 // Right column component
 export function Right() {
     return (
-        <div className="text-[#CFFFE2] flex-1 h-full pt-25 px-10">
+        <div className="text-[#CFFFE2] flex-1 h-full p-10">
             <input
                 type="text" placeholder="Title of your note:" id="title"
                 className="text-5xl font-semibold outline-none w-full h-12"></input>
 
             <div className="flex flex-row pt-4 gap-2">
-                <div className="text-2xl font-semibold">{GetDate()} | </div>
-                <div className="text-2xl font-semibold">0 Characters</div>
+                <div className="text-xl font-semibold">{GetDate()} | </div>
+                <div className="text-xl font-semibold">0 Characters</div>
             </div>
-            <p contentEditable='true' className="text-3xl w-full h-full outline-none pt-4"></p>
+            <p contentEditable='true' className="text-2xl w-full h-full outline-none pt-4"></p>
         </div>
     )
 }
