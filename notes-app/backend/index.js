@@ -69,15 +69,15 @@ app.put('/api/notes/:id', (req, res) => {
    ❌ DELETE a note
 --------------------------- */
 app.delete('/api/notes/:id', (req, res) => {
-    const { id } = req.params;
-    const index = notes.findIndex((n) => n.id === id);
+    const noteId = req.params.id;
 
-    if (index === -1) {
-        return res.status(404).json({ error: "Note not found" });
+    const index = notes.findIndex(note => note.id === noteId);
+    if (index !== -1) {
+        notes.splice(index, 1);
+        res.status(200).json({ message: 'Note deleted' });
+    } else {
+        res.status(404).json({ error: 'Note not found' });
     }
-
-    notes.splice(index, 1);
-    res.status(204).send();
 });
 
 /* --------------------------
