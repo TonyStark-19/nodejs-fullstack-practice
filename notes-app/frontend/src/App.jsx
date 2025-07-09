@@ -33,11 +33,16 @@ export default function App() {
       });
   }, []);
 
+  // removeNote function
+  const removeNote = (id) => {
+    setNotes(prevNotes => prevNotes.filter(note => note.id !== id));
+  };
+
   return (
     <div className="h-screen">
       <Navbar />
 
-      <div className="flex flex-row h-full w-full bg-[#000000] pt-17 overflow-hidden">
+      <div className="flex flex-row h-full w-full bg-black pt-17 overflow-hidden">
         <Left notes={notes} loading={loading} onNoteSelect={setSelectedNote} />
 
         <Right
@@ -47,6 +52,7 @@ export default function App() {
           updateNote={(updatedNote) =>
             setNotes(notes.map(n => n.id === updatedNote.id ? updatedNote : n))
           }
+          removeNote={removeNote}
         />
       </div>
     </div>

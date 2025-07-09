@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 // Right column component
-export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote }) {
+export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, removeNote }) {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [saving, setSaving] = useState(false);
@@ -49,7 +49,28 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote })
         return `${weekday}, ${day} ${month}`;
     }
 
-    // Save Note Function
+    // delete note
+    const deleteNote = () => {
+        if (!selectedNote) return;
+
+        const confirmDelete = window.confirm("Are you sure you want to delete this note?");
+        if (!confirmDelete) return;
+
+        axios.delete(`http://localhost:3001/api/notes/${selectedNote.id}`)
+            .then(() => {
+                // Update UI: clear editor + remove from list
+                removeNote(selectedNote.id);
+                setSelectedNote(null);
+                setTitle("");
+                setContent("");
+                if (contentRef.current) {
+                    contentRef.current.innerText = "";
+                }
+            })
+            .catch(err => console.error("Error deleting note:", err));
+    };
+
+    // Save Note Functions
     const saveNote = () => {
         if (!title.trim() || !content.trim()) {
             alert("Title and content cannot be empty.");
@@ -97,19 +118,43 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote })
     };
 
     return (
-        <div className="text-[#CFFFE2] flex-1 h-full p-10">
-            <input
-                type="text"
-                placeholder="Title of your note:"
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="text-5xl font-semibold outline-none w-full h-16 bg-transparent"
-            />
+        <div className="text-white flex-1 h-full p-10">
+            <div className="flex flex-row justify-between">
+                <div className="flex flex-col">
+                    <input
+                        type="text"
+                        placeholder="Title of your note:"
+                        id="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        className="text-5xl font-semibold outline-none w-full h-16 bg-transparent"
+                    />
 
-            <div className="flex flex-row pt-4 gap-2">
-                <div className="text-xl font-semibold">{GetDate()} | </div>
-                <div className="text-xl font-semibold">{content.length} Characters</div>
+                    <div className="flex flex-row pt-4 gap-2">
+                        <div className="text-xl font-semibold">{GetDate()} | </div>
+                        <div className="text-xl font-semibold">{content.length} Characters</div>
+                    </div>
+                </div>
+
+                <div className="flex flex-row gap-2">
+                    <button
+                        onClick={saveNote}
+                        disabled={saving}
+                        className="mt-4 px-4 py-2 h-11 bg-transparent text-white border-2 border-white font-semibold rounded-xl hover:bg-[#111] transition cursor-pointer"
+                    >
+                        {saving ? "Saving..." : selectedNote ? "Update Note" : "Save Note"}
+                    </button>
+
+                    {selectedNote && (
+                        <button
+                            onClick={deleteNote}
+                            className="mt-4 px-4 py-2 h-11 bg-red-500 text-white font-semibold rounded hover:bg-red-600 transition"
+                        >
+                            Delete Note
+                        </button>
+                    )}
+                </div>
+
             </div>
 
             <p
@@ -118,14 +163,6 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote })
                 onInput={(e) => setContent(e.target.innerText)}
                 className="text-2xl w-full min-h-100 outline-none pt-4 whitespace-pre-wrap"
             />
-
-            <button
-                onClick={saveNote}
-                disabled={saving}
-                className="mt-4 px-4 py-2 bg-[#CFFFE2] text-white font-semibold rounded hover:bg-[#aafcd2] transition"
-            >
-                {saving ? "Saving..." : selectedNote ? "Update Note" : "Save Note"}
-            </button>
         </div>
     );
 }
