@@ -6,10 +6,10 @@ import axios from "axios";
 
 // Right column component
 export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, removeNote }) {
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
-    const [saving, setSaving] = useState(false);
-    const contentRef = useRef();
+    const [title, setTitle] = useState(""); // set title of notes
+    const [content, setContent] = useState(""); // set content of notes
+    const [saving, setSaving] = useState(false); // saving notres
+    const contentRef = useRef(); // use ref for content of notes
 
     // When selectedNote changes, load it into the form
     useEffect(() => {
@@ -118,7 +118,7 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
     };
 
     return (
-        <div className="text-white flex-1 h-full p-10">
+        <div className="flex-1 h-full overflow-y-auto p-10 bg-black text-white scrollbar-transparent">
             <div className="flex flex-row justify-between">
                 <div className="flex flex-col">
                     <input
@@ -148,7 +148,7 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
                     {selectedNote && (
                         <button
                             onClick={deleteNote}
-                            className="mt-4 px-4 py-2 h-11 bg-red-500 text-white font-semibold rounded hover:bg-red-600 transition"
+                            className="mt-4 px-4 py-2 h-11 bg-red-500 text-white font-semibold rounded-xl hover:bg-red-600 transition cursor-pointer"
                         >
                             Delete Note
                         </button>

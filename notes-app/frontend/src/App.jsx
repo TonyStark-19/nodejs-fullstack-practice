@@ -11,9 +11,10 @@ import { Right } from "./components/Right";
 
 // Main app function
 export default function App() {
-  const [notes, setNotes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedNote, setSelectedNote] = useState(null);
+  const [notes, setNotes] = useState([]); // set up notes
+  const [loading, setLoading] = useState(true); // loading
+  const [selectedNote, setSelectedNote] = useState(null); // selected note
+  const [menuOpen, setMenuOpen] = useState(false); // menu toggle
 
   // for new node addition
   const addNewNote = (newNote) => {
@@ -39,11 +40,11 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen">
-      <Navbar />
+    <>
+      <Navbar setMenuOpen={setMenuOpen} />
 
-      <div className="flex flex-row h-full w-full bg-black pt-17 overflow-hidden">
-        <Left notes={notes} loading={loading} onNoteSelect={setSelectedNote} />
+      <div className="flex h-screen w-full overflow-hidden bg-black pt-17">
+        <Left notes={notes} loading={loading} onNoteSelect={setSelectedNote} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
         <Right
           selectedNote={selectedNote}
@@ -55,6 +56,6 @@ export default function App() {
           removeNote={removeNote}
         />
       </div>
-    </div>
+    </>
   )
 }

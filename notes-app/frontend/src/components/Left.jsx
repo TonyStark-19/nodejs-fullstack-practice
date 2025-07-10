@@ -1,8 +1,11 @@
 // Left bar component
-export function Left({ notes, loading, onNoteSelect }) {
+export function Left({ notes, loading, onNoteSelect, menuOpen, setMenuOpen }) {
     return (
-        <div className="bg-black w-96 h-full py-4 pt-5 scrollbar-transparent text-white
-        border-r-2 border-white overflow-y-auto">
+        <div className={`w-96 h-full overflow-y-auto py-4 scrollbar-transparent
+        border-r border-white bg-black text-white
+        max-lg:fixed max-lg:w-full max-lg:top-18 max-lg:z-50 max-lg:pb-14 max-lg:transition-transform max-lg:duration-300
+        max-lg:pr-8
+        ${menuOpen ? "max-lg:translate-x-0" : "max-lg:-translate-x-full"}`}>
             <div className="font-semibold text-xl pb-5 uppercase px-3">List of Saved Notes</div>
 
             {loading ? (
@@ -16,7 +19,8 @@ export function Left({ notes, loading, onNoteSelect }) {
                 notes.map((note) => (
                     <div
                         key={note.id}
-                        className="w-80 mb-4 p-2 pl-3 border rounded-r-xl text-white border-white hover:bg-[#111] cursor-pointer"
+                        className="mb-4 p-2 pl-3 border rounded-r-xl text-white border-white hover:bg-[#111] cursor-pointer
+                        min-lg:w-80 max-lg:w-full"
                         onClick={() => onNoteSelect(note)}
                     >
                         <div className="text-lg font-bold">{note.title}</div>
