@@ -118,51 +118,52 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
     };
 
     return (
-        <div className="flex-1 h-full overflow-y-auto p-10 bg-black text-white scrollbar-transparent">
-            <div className="flex flex-row justify-between">
-                <div className="flex flex-col">
-                    <input
-                        type="text"
-                        placeholder="Title of your note:"
-                        id="title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        className="text-5xl font-semibold outline-none w-full h-16 bg-transparent"
-                    />
+        <div className="flex-1 h-full overflow-y-auto bg-black text-white scrollbar-transparent
+        min-xl:py-10 min-xl:px-10 max-xl:px-8 max-xl:py-6 max-a:py-4 max-a:px-5">
+            <input
+                type="text"
+                placeholder="Title of your note:"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="font-semibold outline-none w-full h-16 bg-transparent
+                min-a:text-5xl max-a:text-4xl"
+            />
 
-                    <div className="flex flex-row pt-4 gap-2">
-                        <div className="text-xl font-semibold">{GetDate()} | </div>
-                        <div className="text-xl font-semibold">{content.length} Characters</div>
-                    </div>
-                </div>
-
-                <div className="flex flex-row gap-2">
-                    <button
-                        onClick={saveNote}
-                        disabled={saving}
-                        className="mt-4 px-4 py-2 h-11 bg-transparent text-white border-2 border-white font-semibold rounded-xl hover:bg-[#111] transition cursor-pointer"
-                    >
-                        {saving ? "Saving..." : selectedNote ? "Update Note" : "Save Note"}
-                    </button>
-
-                    {selectedNote && (
-                        <button
-                            onClick={deleteNote}
-                            className="mt-4 px-4 py-2 h-11 bg-red-500 text-white font-semibold rounded-xl hover:bg-red-600 transition cursor-pointer"
-                        >
-                            Delete Note
-                        </button>
-                    )}
-                </div>
-
+            <div className="flex flex-row gap-2 min-a:pt-4 max-a:pt-2">
+                <div className="text-xl font-semibold">{GetDate()} | </div>
+                <div className="text-xl font-semibold">{content.length} Characters</div>
             </div>
 
             <p
                 ref={contentRef}
                 contentEditable='true'
                 onInput={(e) => setContent(e.target.innerText)}
-                className="text-2xl w-full min-h-100 outline-none pt-4 whitespace-pre-wrap"
+                className="text-2xl w-full outline-none pt-4 whitespace-pre-wrap
+                min-xl:min-h-103 max-xl:min-h-90"
             />
+
+            <div className="flex flex-row gap-2">
+                <button
+                    onClick={saveNote}
+                    disabled={saving}
+                    className="mt-4 px-4 py-2 h-11 font-semibold rounded-xl cursor-pointer
+                    bg-transparent text-white border-2 border-white hover:bg-[#111] transition"
+                >
+                    {saving ? "Saving..." : selectedNote ? "Update Note" : "Save Note"}
+                </button>
+
+                {selectedNote && (
+                    <button
+                        onClick={deleteNote}
+                        className="mt-4 px-4 py-2 h-11 font-semibold rounded-xl cursor-pointer
+                        bg-red-500 text-white hover:bg-red-600 transition"
+                    >
+                        Delete Note
+                    </button>
+                )}
+            </div>
+
         </div>
     );
 }

@@ -12,16 +12,17 @@ export function Left({ notes, loading, onNoteSelect, menuOpen, setMenuOpen }) {
                 <div className="text-xl">Loading notes...</div>
             ) : notes.length === 0 ? (
                 <>
-                    <div className="text-xl px-3">No notes found :(</div>
+                    <div className="text-xl px-3">No notes found : (</div>
                     <div className="text-xl px-3 pt-3">Try creating and saving some notes and see this list again!</div>
                 </>
             ) : (
                 notes.map((note) => (
                     <div
                         key={note.id}
-                        className="mb-4 p-2 pl-3 border rounded-r-xl text-white border-white hover:bg-[#111] cursor-pointer
+                        className="mb-4 p-2 pl-3 border rounded-r-xl cursor-pointer
+                        text-white border-white hover:bg-[#111]
                         min-lg:w-80 max-lg:w-full"
-                        onClick={() => onNoteSelect(note)}
+                        onClick={() => onNoteSelect(note) & setMenuOpen(false)}
                     >
                         <div className="text-lg font-bold">{note.title}</div>
                         <div className="text-sm">{note.date}</div>

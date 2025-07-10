@@ -44,7 +44,12 @@ export default function App() {
       <Navbar setMenuOpen={setMenuOpen} />
 
       <div className="flex h-screen w-full overflow-hidden bg-black pt-17">
-        <Left notes={notes} loading={loading} onNoteSelect={setSelectedNote} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <Left
+          notes={notes}
+          loading={loading}
+          onNoteSelect={setSelectedNote}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen} />
 
         <Right
           selectedNote={selectedNote}
