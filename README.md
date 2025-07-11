@@ -59,11 +59,48 @@ Check out the **frontend [Quote-app README file here](./quote-app/frontend/READM
 
 ---
 
+## 📌 Project 2: Notes App 📝
+
+### 💡 Overview
+
+A **Notes App** where users can create, update, delete, and manage text notes.  
+Each note includes a title, content, and timestamp. Notes are stored in the backend and rendered dynamically in the frontend.
+
+---
+
+### ⚙️ Tech Stack
+
+- **Frontend**: React (with Vite) + Tailwind CSS  
+- **Backend**: Node.js + Express  
+- **Deployment**:
+  - **Frontend** → Vercel  
+  - **Backend** → Render
+
+---
+
+### 📸 Screenshot
+
+![Notes App Screenshot](./images/notes-app.png)
+
+---
+
+### 🌐 Live Demo
+
+- 🔗 Frontend: [Notes App Frontend](https://notes-app-chi-khaki.vercel.app/)
+- 🔗 Backend API: [Notes API](https://notes-app-ftxv.onrender.com/api/notes)
+
+---
+
+### 🛠 How to Run It Locally
+
+Check out the **frontend [Notes-app README file here](./notes-app/frontend/README.md)** to learn how to install and run both backend and frontend locally.
+
+---
+
 ## 📈 More Projects Coming Soon
 
 Stay tuned! I’ll be adding more full-stack mini projects like:
 - Todo App
-- Notes App
 - Weather App
 - Blog API
 
