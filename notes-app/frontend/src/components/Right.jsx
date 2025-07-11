@@ -118,11 +118,11 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
     };
 
     return (
-        <div className="flex-1 h-full overflow-y-auto bg-black text-white scrollbar-transparent
-        min-xl:py-10 min-xl:px-10 max-xl:px-8 max-xl:py-6 max-a:py-4 max-a:px-5">
+        <div className="flex-1 h-full overflow-y-auto bg-slate-900 text-white/85 scrollbar-transparent
+        min-xl:py-8 min-xl:px-10 max-xl:px-8 max-xl:py-6 max-a:py-4 max-a:px-5">
             <input
                 type="text"
-                placeholder="Title of your note:"
+                placeholder="Title of note:"
                 id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -130,7 +130,7 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
                 min-a:text-5xl max-a:text-4xl"
             />
 
-            <div className="flex flex-row gap-2 min-a:pt-4 max-a:pt-2">
+            <div className="flex flex-row gap-2 min-a:pt-4 max-a:pt-2 pb-5">
                 <div className="text-xl font-semibold">{GetDate()} | </div>
                 <div className="text-xl font-semibold">{content.length} Characters</div>
             </div>
@@ -139,7 +139,7 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
                 ref={contentRef}
                 contentEditable='true'
                 onInput={(e) => setContent(e.target.innerText)}
-                className="text-2xl w-full outline-none pt-4 whitespace-pre-wrap
+                className="text-2xl w-full pt-4 pl-3 whitespace-pre-wrap border-2 border-white/80 rounded-lg
                 min-xl:min-h-103 max-xl:min-h-90"
             />
 
@@ -148,7 +148,8 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
                     onClick={saveNote}
                     disabled={saving}
                     className="mt-4 px-4 py-2 h-11 font-semibold rounded-xl cursor-pointer
-                    bg-transparent text-white border-2 border-white hover:bg-[#111] transition"
+                    bg-transparent text-white/85 border-2 border-white/85 hover:bg-gray-900 transition
+                    min-a:px-4 min-a:py-2 max-a:px-3 max-a:py-1.5"
                 >
                     {saving ? "Saving..." : selectedNote ? "Update Note" : "Save Note"}
                 </button>
@@ -157,7 +158,8 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
                     <button
                         onClick={deleteNote}
                         className="mt-4 px-4 py-2 h-11 font-semibold rounded-xl cursor-pointer
-                        bg-red-500 text-white hover:bg-red-600 transition"
+                        bg-red-500 text-white hover:bg-red-600 transition
+                        min-a:px-4 min-a:py-2 max-a:px-3 max-a:py-1.5"
                     >
                         Delete Note
                     </button>
