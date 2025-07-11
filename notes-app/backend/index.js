@@ -12,7 +12,14 @@ const app = express();
 const PORT = 3001;
 
 // Middleware
-app.use(cors()); // Enable CORS to allow frontend access
+
+// Enable CORS to allow frontend access
+app.use(cors({
+    origin: "https://notes-app-chi-khaki.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
 app.use(express.json()); // Allow parsing JSON in request bodies
 
 // In-memory notes array
