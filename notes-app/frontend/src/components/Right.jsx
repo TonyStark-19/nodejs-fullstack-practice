@@ -56,7 +56,7 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
         const confirmDelete = window.confirm("Are you sure you want to delete this note?");
         if (!confirmDelete) return;
 
-        axios.delete(`https://your-backend-app.onrender.com/api/notes/${selectedNote.id}`)
+        axios.delete(`https://notes-app-ftxv.onrender.com/api/notes/${selectedNote.id}`)
             .then(() => {
                 // Update UI: clear editor + remove from list
                 removeNote(selectedNote.id);
@@ -93,7 +93,7 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
 
         if (selectedNote) {
             // Update existing note
-            axios.put(`https://your-backend-app.onrender.com/api/notes/${selectedNote.id}`, note)
+            axios.put(`https://notes-app-ftxv.onrender.com/api/notes/${selectedNote.id}`, note)
                 .then((res) => {
                     updateNote(res.data);
                     setSelectedNote(null);
@@ -105,7 +105,7 @@ export function Right({ selectedNote, setSelectedNote, addNewNote, updateNote, r
                 .finally(() => setSaving(false));
         } else {
             // Create new note
-            axios.post("https://your-backend-app.onrender.com/api/notes", note)
+            axios.post("https://notes-app-ftxv.onrender.com/api/notes", note)
                 .then((res) => {
                     addNewNote(res.data);
                     resetFields();
