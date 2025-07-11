@@ -23,7 +23,7 @@ export default function App() {
 
   // Fetch notes from backend when app mounts
   useEffect(() => {
-    axios.get("http://localhost:3001/api/notes")
+    axios.get("https://notes-app-ftxv.onrender.com/api/notes")
       .then((res) => {
         setNotes(res.data);
         setLoading(false);
