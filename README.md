@@ -97,12 +97,32 @@ Check out the **frontend [Notes-app README file here](./notes-app/frontend/READM
 
 ---
 
-## 📈 More Projects Coming Soon
+## 📌 Project 3: Contact Form ✉️
 
-Stay tuned! I’ll be adding more full-stack mini projects like:
-- Todo App
-- Weather App
-- Blog API
+### 💡 Overview
+
+A responsive **contact form** that allows users to send messages directly from the frontend. The data is saved in **MongoDB** via a custom **Node.js + Express API.**
+Form includes basic validations, toast notifications for success/failure, and is fully mobile-friendly.
+
+---
+
+### ⚙️ Tech Stack
+
+- **Frontend**: React (with Vite) + Tailwind CSS  
+- **Backend**: Node.js + Express + MongoDB
+- **Toast Notifications**: React-Toastify
+
+---
+
+### 📸 Screenshot
+
+![Notes App Screenshot](./images/contact-form.png)
+
+---
+
+### 🛠 How to Run It Locally
+
+Check out the **frontend [Contact-form README file here](./contact-form/frontend/README.md)** to learn how to install and run both backend and frontend locally.
 
 ---
 
