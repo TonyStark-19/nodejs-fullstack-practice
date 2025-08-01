@@ -62,33 +62,37 @@ export default function App() {
     <>
       {/* Toast notifications */}
       <Toaster position="top-center" reverseOrder={false} />
+
       <div className="absolute inset-0 z-0 flex justify-center items-center"
         style={{
           background: "radial-gradient(125% 125% at 50% 90%, #000000 40%, #0d1a36 100%)",
         }}>
-        <div className="text-gray-300 bg-[#0d1a36]/30 w-[550px] p-8 rounded-2xl" data-aos="fade-down">
-          <h1 className="text-4xl font-bold mb-8">Contact Form</h1>
+        <div className="text-gray-300 bg-[#0d1a36]/30 rounded-2xl min-sm:w-[550px] max-sm:w-[90%]
+        min-a:p-8 max-a:p-4" data-aos="fade-down">
+          <h1 className="min-a:text-4xl max-a:text-[32px] font-bold min-a:mb-8 max-a:mb-6">Contact Form</h1>
 
           <form className="flex flex-col" onSubmit={handleSubmit}>
-            <label htmlFor="full-name" className="mb-2 text-sm font-medium text-gray-300">Full Name</label>
+            <label htmlFor="name" className="mb-2 text-sm font-medium text-gray-300">Full Name</label>
             <input
               type="text"
               id="name"
               name="name"
               placeholder="Your full name"
               required
+              autoComplete="name"
               value={formData.name}
               onChange={handleChange}
               className="border-1 border-gray-400 rounded-md p-3 mb-6"
             />
 
-            <label htmlFor="email-address" className="mb-2 text-sm font-medium text-gray-300">Email Address</label>
+            <label htmlFor="email" className="mb-2 text-sm font-medium text-gray-300">Email Address</label>
             <input
               type="email"
               id="email"
               name="email"
               placeholder="Email address"
               required
+              autoComplete="email"
               value={formData.email}
               onChange={handleChange}
               className="border-1 border-gray-400 rounded-md p-3 mb-6"
