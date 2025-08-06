@@ -1,12 +1,15 @@
-// import link
-import { Link } from "react-router-dom";
+// import Link and use navigate
+import { Link, useNavigate } from "react-router-dom";
 
-// import useeffect
-import { useEffect } from "react";
+// import axios
+import axios from 'axios';
 
 // AOS animations
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+// import useeffect and use state
+import { useEffect, useState } from "react";
 
 // Login page
 export function Login() {
@@ -18,6 +21,30 @@ export function Login() {
         });
     }, []);
 
+    const navigate = useNavigate();
+
+    // form entires
+    const [formData, setFormData] = useState({ email: "", password: "" });
+
+    // handle change
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // handle submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+            localStorage.setItem("token", res.data.token); // store token
+            navigate("/success");
+        } catch (err) {
+            console.error(err);
+            alert("Login failed: " + err.response.data.message);
+        }
+    };
+
     return (
         <>
             <div className="flex justify-center items-center h-screen"
@@ -27,7 +54,7 @@ export function Login() {
                 <div className="bg-[#350136]/40 w-[500px] p-8 rounded-2xl text-gray-300" data-aos="fade-down">
                     <h1 className="text-4xl mb-8 font-bold">Login</h1>
 
-                    <form className="flex flex-col">
+                    <form className="flex flex-col" onSubmit={handleSubmit}>
 
                         <label htmlFor="email" className="mb-2 text-sm font-medium text-gray-300">Email Address</label>
                         <input
@@ -38,6 +65,8 @@ export function Login() {
                             required
                             autoComplete="email"
                             className="border-1 border-gray-400 rounded-md p-3 mb-6"
+                            value={formData.email}
+                            onChange={handleChange}
                         />
 
                         <label htmlFor="password" className="mb-2 text-sm font-medium text-gray-300">Password</label>
@@ -48,6 +77,8 @@ export function Login() {
                             placeholder="Password"
                             required
                             className="border-1 border-gray-400 rounded-md p-3 mb-6"
+                            value={formData.password}
+                            onChange={handleChange}
                         />
 
                         <button

@@ -1,12 +1,15 @@
-// import Link
-import { Link } from "react-router-dom";
+// import Link and use navigate
+import { Link, useNavigate } from "react-router-dom";
+
+// import axios
+import axios from 'axios';
 
 // AOS animations
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-// import useeffect
-import { useEffect } from "react";
+// import useeffect and use state
+import { useEffect, useState } from "react";
 
 // Sign up page
 export function Signup() {
@@ -18,6 +21,42 @@ export function Signup() {
         });
     }, []);
 
+    const navigate = useNavigate();
+
+    // form entries
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+
+    // handle change
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // handle submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const { email, password, confirmPassword } = formData;
+
+        // if passowrd do not match
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        try {
+            const res = await axios.post("http://localhost:5000/api/auth/signup", { email, password });
+            localStorage.setItem("token", res.data.token); // Store JWT
+            navigate("/success");
+        } catch (err) {
+            console.error(err);
+            alert("Signup failed: " + err.response.data.message);
+        }
+    };
+
     return (
         <>
             <div className="flex justify-center items-center h-screen"
@@ -27,7 +66,7 @@ export function Signup() {
                 <div className="bg-[#350136]/40 w-[500px] p-8 rounded-2xl text-gray-300" data-aos="fade-down">
                     <h1 className="text-4xl mb-8 font-bold">Signup</h1>
 
-                    <form className="flex flex-col">
+                    <form className="flex flex-col" onSubmit={handleSubmit}>
 
                         <label htmlFor="email" className="mb-2 text-sm font-medium text-gray-300">Email Address</label>
                         <input
@@ -38,6 +77,8 @@ export function Signup() {
                             required
                             autoComplete="email"
                             className="border-1 border-gray-400 rounded-md p-3 mb-6"
+                            value={formData.email}
+                            onChange={handleChange}
                         />
 
                         <label htmlFor="password" className="mb-2 text-sm font-medium text-gray-300">Password</label>
@@ -48,16 +89,20 @@ export function Signup() {
                             placeholder="Password"
                             required
                             className="border-1 border-gray-400 rounded-md p-3 mb-6"
+                            value={formData.password}
+                            onChange={handleChange}
                         />
 
                         <label htmlFor="password" className="mb-2 text-sm font-medium text-gray-300">Confirm password</label>
                         <input
                             type="password"
                             id="confirm-password"
-                            name="confirm-password"
+                            name="confirmPassword"
                             placeholder="Confirm password"
                             required
                             className="border-1 border-gray-400 rounded-md p-3 mb-6"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
                         />
 
                         <button
