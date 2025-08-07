@@ -126,4 +126,32 @@ Check out the **frontend [Contact-form README file here](./contact-form/frontend
 
 ---
 
+## 📌 Project 4: User Authentication 🔐
+
+### 💡 Overview
+
+A fully responsive **User Authentication App** with AOS animations and React Icons.  
+Users can **sign up**, **log in**, view a **success dashboard**, and **log out**. Authentication is handled via **JWT tokens** stored in localStorage, and the backend is fully secured using hashed passwords and protected routes.
+
+---
+
+### ⚙️ Tech Stack
+
+- **Frontend**: React (with Vite) + Tailwind CSS + AOS + React Icons  
+- **Backend**: Node.js + Express + MongoDB + JWT + bcrypt  
+
+---
+
+### 📸 Screenshot
+
+![User Auth Screenshot](./images/user-auth.png)
+
+---
+
+### 🛠 How to Run It Locally
+
+Check out the **frontend [User-auth README file here](./user-auth/frontend/README.md)** to learn how to install and run both backend and frontend locally.
+
+---
+
 Feel free to ⭐️ this repo if you find it useful or inspiring!
