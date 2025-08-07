@@ -51,8 +51,9 @@ export function Login() {
                 style={{
                     background: "radial-gradient(125% 125% at 50% 100%, #000000 40%, #350136 100%)",
                 }}>
-                <div className="bg-[#350136]/40 w-[500px] p-8 rounded-2xl text-gray-300" data-aos="fade-down">
-                    <h1 className="text-4xl mb-8 font-bold">Login</h1>
+                <div className="bg-[#350136]/40 min-a:w-[500px] max-a:w-[90%] min-a:p-8 max-a:p-4 rounded-2xl text-gray-300"
+                    data-aos="fade-down">
+                    <h1 className="min-a:text-4xl max-a:text-[32px] min-a:mb-8 max-a:mb-6 font-bold">Login</h1>
 
                     <form className="flex flex-col" onSubmit={handleSubmit}>
 
@@ -89,9 +90,10 @@ export function Login() {
                         </button>
                     </form>
 
-                    <p className="text-center text-[17px]">Don't have an account?
+                    <div className="flex min-b:flex-row max-b:flex-col justify-center items-center text-[17px]">
+                        <p>Don't have an account?</p>
                         <Link to="/" className="ml-2 hover:underline text-fuchsia-500/70">Sign up now</Link>
-                    </p>
+                    </div>
                 </div>
             </div>
         </>
